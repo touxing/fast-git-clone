@@ -1,12 +1,26 @@
+#!/usr/bin/env node
 import fs from 'fs'
+import path, { dirname } from 'path'
+import { fileURLToPath } from 'url'
 import { Command } from 'commander/esm.mjs'
 import shell from 'shelljs'
 import ora from 'ora'
 import chalk from 'chalk'
 
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+function normarizePath(dir) {
+  return dir.replace(/\\/g, '/')
+}
+
 const program = new Command()
 try {
-  const pkg = JSON.parse(fs.readFileSync('../package.json', 'utf8'))
+  const pkg = JSON.parse(
+    fs.readFileSync(
+      normarizePath(path.join(__dirname, '../package.json')),
+      'utf8'
+    )
+  )
   program.version(pkg.version)
 } catch (error) {
   console.error(chalk.red('%s'), error)
@@ -14,7 +28,7 @@ try {
 
 const spinner = ora({
   text: 'Loading',
-  spinner: 'smiley'
+  spinner: 'smiley',
 })
 
 export function cli(args) {
