@@ -30,12 +30,11 @@
     "url": "https://github.com/touxing/fast-git-clone.git"
   },
   "license": "MIT",
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "chalk": "^5.0.0",
     "commander": "^8.3.0",
     "ora": "^6.0.1",
-    "progress": "^2.0.3",
     "shelljs": "^0.8.4"
-  }
+  },
+  "devDependencies": {}
 }
